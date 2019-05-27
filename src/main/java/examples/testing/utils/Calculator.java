@@ -7,8 +7,7 @@ public class Calculator {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    public double add(double firstNumber, double secondNumber) {
-
+    public double sum(double firstNumber, double secondNumber) {
         logger.debug("Add 2 numbers: {} + {}", firstNumber, secondNumber);
         return firstNumber + secondNumber;
     }

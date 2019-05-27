@@ -1,4 +1,4 @@
-package examples.testing.utils.junit4;
+package examples.testing.junit4.utils;
 
 import examples.testing.utils.Calculator;
 import junitparams.JUnitParamsRunner;
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class CalculatorTest {
-    private final static Logger LOGGER = LoggerFactory.getLogger(JUnitParamsRunner.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CalculatorTest.class);
 
     private static Calculator testObject;
 
@@ -35,7 +35,7 @@ public class CalculatorTest {
     public void shouldAddNumbers(double firstNumber, double secondNumber, double expected) {
         //given
         //when
-        double result = testObject.add(firstNumber, secondNumber);
+        double result = testObject.sum(firstNumber, secondNumber);
         //then
         assertEquals(0, Double.compare(expected, result));
     }
