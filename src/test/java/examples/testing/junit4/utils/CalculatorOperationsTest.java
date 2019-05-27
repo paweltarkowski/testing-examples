@@ -1,10 +1,12 @@
 package examples.testing.junit4.utils;
 
+import examples.testing.junit4.runtest.OperationTests;
 import examples.testing.utils.Calculator;
 import examples.testing.utils.Operation;
 import examples.testing.utils.Sum;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
@@ -12,7 +14,7 @@ import org.mockito.Spy;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CalculateOperationsTest {
+public class CalculatorOperationsTest {
 
     private static double SOME_VALUE = 1.0;
 
@@ -41,6 +43,7 @@ public class CalculateOperationsTest {
     }
 
     @Test
+    @Category(OperationTests.class)
     public void shouldCalcUsingCreateMockOperationUsingStaticMethod() {
         //given
         Operation stubOperation = mock(Operation.class);
@@ -53,6 +56,7 @@ public class CalculateOperationsTest {
     }
 
     @Test
+    @Category(OperationTests.class)
     public void shouldCalcUsingRealSumOperation() {
         //given
         //when
@@ -62,6 +66,7 @@ public class CalculateOperationsTest {
     }
 
     @Test
+    @Category(OperationTests.class)
     public void shouldCalcUsingSpySumOperation() {
         //given
         double expected = 123.0;
@@ -73,6 +78,7 @@ public class CalculateOperationsTest {
     }
 
     @Test
+    @Category(OperationTests.class)
     public void shouldCalcUsingStubOperation() {
         //given
         Operation stubOperation = new StubOperation(SOME_VALUE);
