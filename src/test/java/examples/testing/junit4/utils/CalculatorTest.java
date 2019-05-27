@@ -1,20 +1,15 @@
 package examples.testing.junit4.utils;
 
 import examples.testing.utils.Calculator;
-import examples.testing.utils.Operation;
-import examples.testing.utils.Sum;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(JUnitParamsRunner.class)
 public class CalculatorTest {
@@ -22,13 +17,8 @@ public class CalculatorTest {
 
     private static Calculator testObject;
 
-    private static double SOME_VALUE = 1.0;
-
-    @Mock
-    private Operation mockOperation;
-
-    @Spy
-    private Operation sumOperation = new Sum(SOME_VALUE, SOME_VALUE);
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @BeforeClass
     public static void setUpClass() {
@@ -39,9 +29,9 @@ public class CalculatorTest {
     @Before
     public void setUp() {
         LOGGER.debug("Setup test");
-        MockitoAnnotations.initMocks(this);
     }
 
+    //example of specify params before method call
     @Test
     @Parameters({
             "1, 2, 3",
@@ -91,52 +81,20 @@ public class CalculatorTest {
         assertEquals("Expected: " + expected + ", result: " + result, 0, Double.compare(expected, result));
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test //(expected = ArithmeticException.class) - can be used in case on exception.expect
     @Parameters({
             "1, 0",
             "0, 0",
             "-100, 0"
 
     })
-
     public void shouldThrowExceptionDuringDivideNumbers(double firstNumber, double secondNumber) {
         //given
+        exception.expect(ArithmeticException.class);
         //when
         //then
         testObject.divide(firstNumber, secondNumber);
     }
-
-    @Test
-    public void shouldCalculateUsingMockOperation() {
-        //given
-        double expected = 1.0;
-        when(mockOperation.calculate()).thenReturn(expected);
-        //when
-        double result = testObject.calculate(mockOperation);
-        //then
-        assertEquals(0, Double.compare(expected, result));
-    }
-
-    @Test
-    public void shouldCalcUsingRealSumOperation() {
-        //given
-        //when
-        double result = testObject.calculate(sumOperation);
-        //then
-        assertEquals(0, Double.compare(2.0, result));
-    }
-
-    @Test
-    public void shouldCalcUsingSpySumOperation() {
-        //given
-        double expected = 123.0;
-        when(sumOperation.calculate()).thenReturn(expected);
-        //when
-        double result = testObject.calculate(sumOperation);
-        //then
-        assertEquals(0, Double.compare(expected, result));
-    }
-
 
     @After
     public void tearDown() {
