@@ -3,15 +3,29 @@ package examples.testing.utils.junit4;
 import examples.testing.utils.Calculator;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class CalculatorTest {
+    private final static Logger LOGGER = LoggerFactory.getLogger(JUnitParamsRunner.class);
 
-    private Calculator testObject = new Calculator();
+    private static Calculator testObject;
+
+    @BeforeClass
+    public static void setUpClass() {
+        LOGGER.debug("Setup class");
+        testObject = new Calculator();
+    }
+
+    @Before
+    public void setUp() {
+        LOGGER.debug("Setup test");
+    }
 
     @Test
     @Parameters({
@@ -76,4 +90,15 @@ public class CalculatorTest {
         //then
         testObject.divide(firstNumber, secondNumber);
     }
+
+    @After
+    public void tearDown() {
+        LOGGER.debug("Tear down after test");
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        LOGGER.debug("Tear down after class");
+    }
+
 }
