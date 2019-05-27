@@ -22,8 +22,13 @@ public class CalculatorTest {
 
     private static Calculator testObject;
 
+    private static double SOME_VALUE = 1.0;
+
     @Mock
     private Operation mockOperation;
+
+    @Spy
+    private Operation sumOperation = new Sum(SOME_VALUE, SOME_VALUE);
 
     @BeforeClass
     public static void setUpClass() {
@@ -108,6 +113,26 @@ public class CalculatorTest {
         when(mockOperation.calculate()).thenReturn(expected);
         //when
         double result = testObject.calculate(mockOperation);
+        //then
+        assertEquals(0, Double.compare(expected, result));
+    }
+
+    @Test
+    public void shouldCalcUsingRealSumOperation() {
+        //given
+        //when
+        double result = testObject.calculate(sumOperation);
+        //then
+        assertEquals(0, Double.compare(2.0, result));
+    }
+
+    @Test
+    public void shouldCalcUsingSpySumOperation() {
+        //given
+        double expected = 123.0;
+        when(sumOperation.calculate()).thenReturn(expected);
+        //when
+        double result = testObject.calculate(sumOperation);
         //then
         assertEquals(0, Double.compare(expected, result));
     }
