@@ -6,12 +6,14 @@ import junitparams.Parameters;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) //order test methods by name
 public class CalculatorTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(CalculatorTest.class);
 
