@@ -9,7 +9,7 @@ public class Calculator {
 
     public double sum(double firstNumber, double secondNumber) {
         logger.debug("Add 2 numbers: {} + {}", firstNumber, secondNumber);
-        return firstNumber + secondNumber;
+        return new Sum(firstNumber, secondNumber).calculate();
     }
 
     public double multiply(double firstNumber, double secondNumber) {
@@ -23,5 +23,9 @@ public class Calculator {
             throw new ArithmeticException("Can not divide " + firstNumber + " by 0 ");
         }
         return firstNumber / secondNumber;
+    }
+
+    public double calculate(Operation operation) {
+        return operation.calculate();
     }
 }
