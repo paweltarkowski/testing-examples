@@ -1,5 +1,6 @@
-package examples.testing.utils;
+package examples.testing.utils.junit4;
 
+import examples.testing.utils.Calculator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

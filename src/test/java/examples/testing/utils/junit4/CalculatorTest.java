@@ -1,5 +1,6 @@
-package examples.testing.utils;
+package examples.testing.utils.junit4;
 
+import examples.testing.utils.Calculator;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
