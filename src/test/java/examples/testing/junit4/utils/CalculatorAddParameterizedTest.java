@@ -1,4 +1,4 @@
-package examples.testing.utils.junit4;
+package examples.testing.junit4.utils;
 
 import examples.testing.utils.Calculator;
 import org.junit.Test;
@@ -38,7 +38,7 @@ public class CalculatorAddParameterizedTest {
     public void shouldAddNumbersWhichAreParameterized() {
         //given
         //when
-        double result = testObject.add(firstNumber, secondNumber);
+        double result = testObject.sum(firstNumber, secondNumber);
         //then
         assertEquals(0, Double.compare(expected, result));
     }

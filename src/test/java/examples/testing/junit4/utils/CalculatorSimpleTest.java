@@ -1,4 +1,4 @@
-package examples.testing.utils.junit4;
+package examples.testing.junit4.utils;
 
 import examples.testing.utils.Calculator;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class CalculatorSimpleTest {
         int firstNumber = 1;
         int secondNumber = 2;
         //when
-        double result = testObject.add(firstNumber, secondNumber);
+        double result = testObject.sum(firstNumber, secondNumber);
         //then
         assertEquals(0, Double.compare(3.0, result));
     }
