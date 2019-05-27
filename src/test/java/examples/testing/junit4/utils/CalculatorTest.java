@@ -1,20 +1,29 @@
 package examples.testing.junit4.utils;
 
 import examples.testing.utils.Calculator;
+import examples.testing.utils.Operation;
+import examples.testing.utils.Sum;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.*;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(JUnitParamsRunner.class)
 public class CalculatorTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(CalculatorTest.class);
 
     private static Calculator testObject;
+
+    @Mock
+    private Operation mockOperation;
 
     @BeforeClass
     public static void setUpClass() {
@@ -25,6 +34,7 @@ public class CalculatorTest {
     @Before
     public void setUp() {
         LOGGER.debug("Setup test");
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -90,6 +100,18 @@ public class CalculatorTest {
         //then
         testObject.divide(firstNumber, secondNumber);
     }
+
+    @Test
+    public void shouldCalculateUsingMockOperation() {
+        //given
+        double expected = 1.0;
+        when(mockOperation.calculate()).thenReturn(expected);
+        //when
+        double result = testObject.calculate(mockOperation);
+        //then
+        assertEquals(0, Double.compare(expected, result));
+    }
+
 
     @After
     public void tearDown() {
