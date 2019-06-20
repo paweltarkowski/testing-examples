@@ -7,43 +7,82 @@
     <groupId>testing.examples</groupId>
     <artifactId>junit</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <junit4.version>4.12</junit4.version>
         <junit5.jupiter.version>5.4.2</junit5.jupiter.version>
         <powermock.version>2.0.2</powermock.version>
+        <gmavenplus.plugin.version>1.4</gmavenplus.plugin.version>
+        <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+        <slf4j.version>1.7.26</slf4j.version>
+        <junitparams.version>1.1.1</junitparams.version>
+        <mockito.core.version>2.23.0</mockito.core.version>
+        <junit5.platform.launcher.version>1.4.2</junit5.platform.launcher.version>
+        <spock.core.version>1.0-groovy-2.4</spock.core.version>
+        <groovy.version>2.4.4</groovy.version>
+
     </properties>
+    <build>
+        <plugins>
+            <!-- start groovy support for spock -->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>${gmavenplus.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <testSources>
+                        <testSource>
+                            <directory>${project.basedir}/src/test/java</directory>
+                            <includes>
+                                <include>**/*.groovy</include>
+                            </includes>
+                        </testSource>
+                    </testSources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.class</include>
+                        <include>**/*Spec.class</include> <!-- spock classes-->
+                    </includes>
+                </configuration>
+            </plugin>
+            <!-- end groovy support for spock -->
+        </plugins>
+    </build>
+
 
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.26</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <!-- start junit4 dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit4.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>pl.pragmatists</groupId>
             <artifactId>JUnitParams</artifactId>
-            <version>1.1.1</version>
+            <version>${junitparams.version}</version>
         </dependency>
         <!-- end junit4 dependencies -->
 
@@ -51,7 +90,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.23.0</version>
+            <version>${mockito.core.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- end mockito -->
@@ -76,7 +115,7 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
-            <version>1.4.2</version>
+            <version>${junit5.platform.launcher.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- end backward junit4 compatibility -->
@@ -107,6 +146,20 @@
 
         <!-- end junit 5 -->
 
+        <!-- spock -->
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>1.0-groovy-2.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.4</version>
+            <scope>test</scope>
+        </dependency>
 
+        <!-- end spock -->
     </dependencies>
 </project>
