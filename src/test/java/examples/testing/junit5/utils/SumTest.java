@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @DisplayName("Sum Assertions")
-class SumTest {
+public class SumTest {
 
     static Stream<Arguments> forShouldAddNumbers() {
         return of(
