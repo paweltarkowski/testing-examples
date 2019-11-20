@@ -10,8 +10,10 @@ class SumSpec extends Specification {
     def "should sum all elements #description"() {
         when:
         def result = operation.calculate()
+
         then:
         Double.compare(result, expected) == 0
+
         where:
         operation      | expected | description
         new Sum(1, 2)  | 3        | "1 + 2 = 3"
