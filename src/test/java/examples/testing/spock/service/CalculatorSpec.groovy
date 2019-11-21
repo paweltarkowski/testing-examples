@@ -58,4 +58,7 @@ class CalculatorSpec extends Specification {
         where:
         someNumber << [0.0, 1.0, 2.0]
     }
+
+
+
 }

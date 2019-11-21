@@ -11,9 +11,13 @@ class NumberServiceSpec extends Specification {
     private Calculator calculator
     private NumberService testObject
 
+    def setupSpec(){
+        println "SETUP SPEC"
+    }
+
     def setup() {
         println "SETUP"
-        calculator = Mock()
+        calculator = Stub()
         testObject = new NumberService(calculator)
     }
 
@@ -38,6 +42,11 @@ class NumberServiceSpec extends Specification {
     }
 
     def printStepWhere(int index) {
+        println "calculator is null: " + (calculator == null)
+
+        // mock is not changed here - watch out for this case when you set mock in setup method
+        calculator.sum(1, 3) >> 3
+
         println("WHERE " + index)
     }
 
@@ -50,10 +59,17 @@ class NumberServiceSpec extends Specification {
         thrown(WrongNumberException)
 
         where:
-        firstNumber | secondNumber | description
-        2           | 1            | "first number is not odd"
-        1           | 4            | "second number is not odd"
-        2           | 2            | "both numbers are not odd"
+        firstNumber | secondNumber | description                | printStepCall
+        2           | 1            | "first number is not odd"  | printStepWhere(1)
+        1           | 4            | "second number is not odd" | printStepWhere(2)
+        2           | 2            | "both numbers are not odd" | printStepWhere(3)
     }
 
+    def cleanup() {
+        println "CLEANUP"
+    }
+
+    def cleanupSpec() {
+        println "CLEANUP SPEC"
+    }
 }
