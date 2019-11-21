@@ -17,6 +17,7 @@ public class NumberService {
         if (!isOdd(firstNumber) || !isOdd(secondNumber)) {
             throw new WrongNumberException("At least one number is not odd:" + firstNumber + "," + secondNumber);
         }
-        return Double.valueOf(calculator.sum(firstNumber, secondNumber)).longValue();
+        double result = calculator.sum(firstNumber, secondNumber);
+        return Double.valueOf(result).longValue();
     }
 }
