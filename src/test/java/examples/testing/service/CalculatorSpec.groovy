@@ -1,4 +1,4 @@
-package examples.testing.spock.service
+package examples.testing.service
 
 import examples.testing.utils.Calculator
 import spock.lang.Shared

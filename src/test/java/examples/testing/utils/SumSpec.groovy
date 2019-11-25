@@ -1,6 +1,5 @@
-package examples.testing.spock.utils
+package examples.testing.utils
 
-import examples.testing.utils.Sum
 import spock.lang.Specification
 import spock.lang.Unroll
 
