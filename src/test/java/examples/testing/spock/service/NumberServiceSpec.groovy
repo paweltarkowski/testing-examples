@@ -22,10 +22,10 @@ class NumberServiceSpec extends Specification {
     }
 
     @Unroll
-    def "should sum of two odd numbers be possible to calculate: #firstOddNumber + #secondOddNumber"() {
+    def "should sum of two odd numbers be possible to calculate: #firstOddNumber + #secondOddNumber = #expected"() {
         given:
         println "GIVEN"
-        calculator.sum(firstOddNumber, secondOddNumber) >> sum
+        calculator.sum(firstOddNumber, secondOddNumber) >> expected
 
         when:
         println "WHEN"
@@ -33,12 +33,12 @@ class NumberServiceSpec extends Specification {
 
         then:
         println "THEN"
-        result == sum
+        result == expected
 
         where:
-        firstOddNumber | secondOddNumber || sum | printStepCall
-        1              | 3               || 4   | printStepWhere(1)
-        5              | 5               || 10  | printStepWhere(2)
+        firstOddNumber | secondOddNumber || expected | printStepCall
+        1              | 3               || 4        | printStepWhere(1)
+        5              | 5               || 10       | printStepWhere(2)
     }
 
     def printStepWhere(int index) {
@@ -59,10 +59,10 @@ class NumberServiceSpec extends Specification {
         thrown(WrongNumberException)
 
         where:
-        firstNumber | secondNumber | description                | printStepCall
-        2           | 1            | "first number is not odd"  | printStepWhere(1)
-        1           | 4            | "second number is not odd" | printStepWhere(2)
-        2           | 2            | "both numbers are not odd" | printStepWhere(3)
+        firstNumber | secondNumber || description                | printStepCall
+        2           | 1            || "first number is not odd"  | printStepWhere(1)
+        1           | 4            || "second number is not odd" | printStepWhere(2)
+        2           | 2            || "both numbers are not odd" | printStepWhere(3)
     }
 
     def cleanup() {

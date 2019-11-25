@@ -9,7 +9,7 @@ import spock.lang.Unroll
 class CalculatorOperationSpec extends Specification {
 
     @Shared
-    private Calculator calculator = new Calculator()
+    private Calculator testObject = new Calculator()
 
     @Unroll
     def "calculator should return value calculated by operation: #value"() {
@@ -18,7 +18,7 @@ class CalculatorOperationSpec extends Specification {
         operation.calculate() >> value
 
         expect:
-        calculator.calculate(operation) == value
+        testObject.calculate(operation) == value
 
         where:
         value << [1, 3, 5]
@@ -32,7 +32,7 @@ class CalculatorOperationSpec extends Specification {
         }
 
         when:
-        calculator.calculate(operation)
+        testObject.calculate(operation)
 
         then:
         thrown(ArithmeticException)

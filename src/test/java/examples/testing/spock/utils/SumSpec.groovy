@@ -12,12 +12,12 @@ class SumSpec extends Specification {
         def result = operation.calculate()
 
         then:
-        Double.compare(result, expected) == 0
+        result == expected
 
         where:
-        operation      | expected | description
-        new Sum(1, 2)  | 3        | "1 + 2 = 3"
-        new Sum(0, 1)  | 1        | "0 + 1 = 1"
-        new Sum(-1, 2) | 1        | "-1 + 2  = 1"
+        operation         || expected | description
+        new Sum(1.3, 2.4) || 3.7      | "1.3 + 2.4 = 3.7"
+        new Sum(0, 1)     || 1        | "0 + 1 = 1"
+        new Sum(-1, 2)    || 1        | "-1 + 2  = 1"
     }
 }
