@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Calculator {
-
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public double sum(double firstNumber, double secondNumber) {
