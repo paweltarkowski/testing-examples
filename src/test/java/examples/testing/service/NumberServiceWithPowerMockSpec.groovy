@@ -1,7 +1,6 @@
-package examples.testing.spock.service
+package examples.testing.service
 
 import examples.testing.exception.WrongNumberException
-import examples.testing.service.NumberService
 import examples.testing.utils.Calculator
 import examples.testing.utils.NumberUtils
 import org.junit.runner.RunWith
