@@ -144,3 +144,8 @@ Each feature method can be splitted into several block of codes which are:
 * **cons** - spock require learning, hope you find this time worth of that
 * if you do not like spock but like writing test in **junit4/5/other framework** – it is completely good, keep doing that
 
+## References
+* http://spockframework.org/
+* https://github.com/spockframework/spock-example
+* http://kaczanowscy.pl/books/bad_tests_good_tests.html
+
