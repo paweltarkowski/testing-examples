@@ -19,7 +19,7 @@ class NumberServiceSpecWithFinalClassSpec extends Specification {
     private NumberService testObject
 
     def setup() {
-        finalCalculator = Mock(FinalCalculator)
+        finalCalculator = Stub()
         testObject = new NumberService(finalCalculator)
     }
 
