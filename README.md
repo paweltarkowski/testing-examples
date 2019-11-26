@@ -1,8 +1,8 @@
 # Testing-examples
 Idea of this project is to share knowledge about writing junits using:
-* spock
-* junit4
-* junit5
+* **spock** - **available description and many examples** - package examples.testing
+* **junit4** - available examples only - package examples.testing.junit4  
+* **junit5** - available one example only - package examples.testing.junit5  
  
 ## Spock
 ### Spock - Introduction
