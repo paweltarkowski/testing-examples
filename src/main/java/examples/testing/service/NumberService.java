@@ -2,10 +2,14 @@ package examples.testing.service;
 
 import examples.testing.exception.WrongNumberException;
 import examples.testing.utils.Calculator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static examples.testing.utils.NumberUtils.isOdd;
 
 public class NumberService {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final Calculator calculator;
 
@@ -17,7 +21,8 @@ public class NumberService {
         if (!isOdd(firstNumber) || !isOdd(secondNumber)) {
             throw new WrongNumberException("At least one number is not odd:" + firstNumber + "," + secondNumber);
         }
-        double result = calculator.sum(firstNumber, secondNumber);
-        return Double.valueOf(result).longValue();
+        long result = Double.valueOf(calculator.sum(firstNumber, secondNumber)).longValue();
+        logger.info("Result is {}", result);
+        return result;
     }
 }

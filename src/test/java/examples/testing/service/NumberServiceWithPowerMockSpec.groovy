@@ -51,11 +51,8 @@ class NumberServiceWithPowerMockSpec extends Specification {
         isOddNumber(true)
         calculator.sum(*_) >> SOME_LONG_NUMBER
 
-        when:
-        def result = testObject.sumOddNumbers(SOME_LONG_NUMBER, SOME_LONG_NUMBER)
-
-        then:
-        result == SOME_LONG_NUMBER
+        expect:
+        testObject.sumOddNumbers(SOME_LONG_NUMBER, SOME_LONG_NUMBER) == SOME_LONG_NUMBER
     }
 
 }
